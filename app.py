@@ -8,5 +8,4 @@ def index():
 
 @app.route('/adicionar', methods=['GET', 'POST'])
 def adicionar():
-    if request.method == 'POST':
-        texto = request.form.get('texto')
+    return render_template('adicionar.html')
