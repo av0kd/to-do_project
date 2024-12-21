@@ -1,9 +1,9 @@
 from flask import Flask,render_template
 app = Flask(__name__)
 
-@app.route('/list')
+@app.route('/')
 def todo_list():
-    return render_template('to-do_list.html')
+    return render_template('lista.html')
 
 @app.route('/new_task')
 def new_task():
