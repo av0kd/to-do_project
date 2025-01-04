@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Adicionar Ticket</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    
+    <h1>O Que Deseja?</h1>
+    <form action="/adicionar" method="post">
+        <label for="tarefa">Selecione a Tarefa: </label>
+        <select name="tarefa" id="tarefa">
+            <option value="Software">Software</option>
+            <option value="Manutencao">Manutenção</option>
+            <option value="Servidor">Servidor</option>
+        </select>
+        <br>
+        <label for="turno">Turno: </label>
+        <select name="turno" id="turno">
+            <option value="Manha">Manhã</option>
+            <option value="Tarde">Tarde</option>
+        </select>
+        <br>
+        <label for="operador">Operador: </label>
+        <select name="operador" id="operador">
+            <option value="Darlan">Darlan</option>
+            <option value="Jefferson">Jefferson</option>
+        </select>
+        <br>
+
+        <button type="submit">Criar Ticket</button>
+    </form>
 </body>
 </html>

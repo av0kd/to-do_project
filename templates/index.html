@@ -14,10 +14,24 @@
 
         <nav class="button-header">
             <ul>
-                <li><a href="">Adicionar Ticket</a></li>
-                <li><a href="">Remover Ticket</a></li>
+                <li><a href="/adicionar">Adicionar Ticket</a></li>
+                <li><a href="#">Remover Ticket</a></li>
             </ul>
         </nav>
     </header>
+
+    <main>
+        <h2>Tickets Criados</h2>
+
+        {% if tickets %}
+        <ul>
+            {% for ticket in tickets %}
+                <li><strong>{{ ticket.tarefa }}</strong> ({{ ticket.turno }}) - Operador: {{ ticket.operador }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Nenhum ticket criado ainda.</p>
+        {% endif %}
+    </main>
 </body>
 </html>
