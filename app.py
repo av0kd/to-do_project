@@ -64,5 +64,22 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
 
+@app.route('/registrar', methods=['GET', 'POST'])
+def registrar():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        telefone = request.form.get('telefone')
+        genero = request.form.get('genero')
+        data_nascimento = request.form.get('data_nascimento')
+        cidade = request.form.get('cidade')
+        estado = request.form.get('estado')
+        endereco = request.form.get('endereco')
+
+        flash('Conta criada com sucesso! Faça login para continuar.')
+        return redirect(url_for('login'))
+
+    return render_template('registrar.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
