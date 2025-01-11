@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tickets.db'  # Banco de dados SQLite
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Desabilita rastreamento de modificações
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tickets.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Ticket(db.Model):
@@ -20,11 +21,17 @@ with app.app_context():
 
 @app.route('/')
 def index():
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
+
     tickets = Ticket.query.all()
     return render_template('index.html', tickets=tickets)
 
 @app.route('/adicionar', methods=['GET', 'POST'])
 def adicionar():
+    if 'logged_in' not in session:
+        return redirect(url_for('login')) 
+    
     if request.method == 'POST':
         tarefa = request.form.get('tarefa')
         turno = request.form.get('turno')
@@ -37,6 +44,25 @@ def adicionar():
         return redirect(url_for('index'))
 
     return render_template('adicionar.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        senha = request.form.get('senha')
+
+        if nome == 'admin' and senha == 'admin':  
+            session['logged_in'] = True 
+            return redirect(url_for('index'))  
+        else:
+            flash('Credenciais inválidas. Tente novamente.')
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
