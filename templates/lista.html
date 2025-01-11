@@ -10,9 +10,14 @@
     
     <div class = "container">
         <div class = "list">
+            <h1>ATIVIDADES</h1>
+            {% for atividade in atividades %}
             <div class="itens">
-                <p>Oi Bom dia</p>
+                <p>{{atividade.nome}}</p>
+                <p>{{atividade.data}}</p>
+                <p>{{atividade.prioridade}}</p>
             </div>
+            {% endfor %}
         </div>
     </div>
 
