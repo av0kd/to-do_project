@@ -22,17 +22,24 @@
     </header>
 
     <main>
+        <div class="container">
+        <div class="list">
         <h2>Tickets Criados</h2>
 
         {% if tickets %}
         <ul>
             {% for ticket in tickets %}
+            <div class="itens">
                 <li><strong>{{ ticket.tarefa }}</strong> ({{ ticket.turno }}) - Operador: {{ ticket.operador }}</li>
             {% endfor %}
         </ul>
         {% else %}
         <p>Nenhum ticket criado ainda.</p>
         {% endif %}
+    </div>
+</div>
+</div>
     </main>
 </body>
 </html>
+
