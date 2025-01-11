@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Para Fazer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="nome">
+            <h1>Organizador de Tarefas</h1>
+        </div>
+
+        <nav class="button-header">
+            <ul>
+                <li><a href="/adicionar">Adicionar Ticket</a></li>
+                <li><a href="#">Remover Ticket</a></li>
+                <li><a href="/login">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Tickets Criados</h2>
+
+        {% if tickets %}
+        <ul>
+            {% for ticket in tickets %}
+                <li><strong>{{ ticket.tarefa }}</strong> ({{ ticket.turno }}) - Operador: {{ ticket.operador }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Nenhum ticket criado ainda.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
