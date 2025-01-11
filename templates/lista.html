@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <div class = "container">
+        <div class = "list">
+            <h1>ATIVIDADES</h1>
+            {% for atividade in atividades %}
+            <div class="itens">
+                <p>{{atividade.nome}}</p>
+                <p>{{atividade.data}}</p>
+                <p>{{atividade.prioridade}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
